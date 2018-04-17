@@ -1,0 +1,29 @@
+#include "stdio.h"
+main()
+{
+    FILE *fp1,*fp2;
+    fp2 = fopen("../veriler.txt", "w");
+    char c;
+    fp1 = fopen("../okuma.c","r");
+    int str=1;
+    while (c != EOF)
+    {
+        c = getc(fp1);
+        if(c =='\n')
+            str++;
+        if(c == '/')
+        {
+            c = getc(fp1);
+            if(c == '/'){
+                fprintf(fp2,"%5d satir: ", str);
+                printf("%5d satir ", str);
+                while(c != '\n')
+                {
+                c = getc(fp1);
+                putc(c,fp2);
+                }
+            }
+        }
+    }
+    fclose(fp1);
+}
